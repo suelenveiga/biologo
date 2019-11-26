@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang=pt-BR>
+<head>
+  <meta charset=utf-8>
+  <meta http-equiv=X-UA-Compatible content="IE=Edge">
+  <meta name=viewport content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name=author content="Juliana Santiago">
+  <link rel=apple-touch-icon sizes=57x57 href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADkAAAA5CAMAAAC7xnO3AAAABGdBTUEAALGPC/xhBQAAADZQTFRF1lNa4Hl+22Zs7a6x/PHy+ubn//r6////2Vxi9dPV6qOm55ea5IuP3W1z4oKH+N/g8Ly+8cXHHXWrvQAAAhNJREFUSMftlsuWrDAIRUlCciAPo///s3eg7QNNVXUP+k6aUS2X2yIHcoDw06A/8pdJ1lCbEJG0GpQ/JmNwQkeIC/EjMmZPNnyOb8k0N3qKNqfXJBeh55DCr8g40TimOCajo1fh4ojkiV7HxM9kKkaUkouRq6RHcr6II4EBcLg+nJ/I2Ow7HNl+r8UHMl/yqgmL825Bqpfn+U7Ga+cs6J6IfMdy7aZ4I4NVcX0QrOLBknwupdSInUSs56M6NqTKqc80AeiNiFoHkPTUk6KGPJJtCiQA0KlNCgAJ0HZL94vcFfQdPU91ZiBxAniuU+6rXqvqhmzHJ9Vv7ZI4bY3l9UiqGVJ21TetCmL1NaJsuuxVE0Pu5UibVgsyEeWtnKJpL86IxE5WIqo7iXfknlbAIiTLdr79EHdSjnLlLe2kQdOWZD4KLiNta+LsSdxXwdUJ+cxH47dRPSknRFUGek+9A6wakY6bVIc9RHX9O/VSvV9/90rDHjr1LUnpAGYiIpoB9LOV3vr2clfIZ16N0EXw1fNvd8XcT3KK7sh1qHHS8M4TyCt66edLMvIE40NEjpHMIZ59yHjfJs5iB1N877fr500iz3578/gCoHzk8dbl6o0czRU7y27keJaZ+WmzfTU/AS5DhV7P7MueEM6d9XZPOO8mp3p+spsAQA9OtkuhQiQu9G/sYHlyHUB0U/7GDva33/5v8h+5a0BRJqXsuwAAAABJRU5ErkJggg==">
+  <link rel=apple-touch-icon sizes=60x60 href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAABGdBTUEAALGPC/xhBQAAADNQTFRF1lNa8MHD4oKG33Z79tjZ//v76qWo////2V9l/PDx3Ghu883O2Fhf6Z6h7rK1+ePk5pGVoau36wAAAjdJREFUSMftlkmS5CAMRcUgvsTo+5+2Fx7BSdoVvemOKFbY4Ye+jCbCXyz6hf93WFOwUYhIog1JfwCzD07oXOKC55ewX67kxi/+DazhjhIRSdBH2DuaLecfYBNpvqL5Chuhb0vMF/iBHekO9oPmHGPMg3I/gdX2H1rTtJnxpX6GQ/9ZWT/T0r8OH2EvowmtpeooSPwHmJfe37RSVpF6vxe+w4Nhp6hERFShbmKaJh6LAVYpC5Dks9cH3B0vNh3HBQDJSi9qgC+n52VNwOaIyLU1SZfTcUkjHC6KGaoMoAUbGgBWBV+iL4zwcR+5QquLru7i9qd62LYjfESmZV3287XprmlRPs6PI3yIqjD7xluxfrsxMvuGSEb4UO23K5J1s+wBsMAfumew+M19aWyJyHKTzdEzjGYwpc3JnFAz5bpHZ0CiGXycWtDitmFTDGPNqthQpj7HS7ondy133hGRS5dSEaf3TFahphoFVKGK7emSmXYeYWQTbyZdcJsATpbmEXbNHFmD+0wM7prIPbb7pJXSAJOJKBugFaGvWTVWsGiYa6ZcmcdGEB4rCeXAXKUyh6H6fqokQw0jogpufEmmLzXsZppiA/aIeaieQBlNG2BPsUs5n3SMsbuG+388f/VTryp3OdNedeuSd/hLlwSqjHAnW+r7yWD0+WEy6GeSCpyF68VMAugZyN1VSdEXc9iRQjkBexHaEu3VBFhcJpIGoAlRduX1BLjOnsU6BaDWlh/Nnr+T/r8I/wFWLUctbTgy8gAAAABJRU5ErkJggg==">
+  <link rel=apple-touch-icon sizes=72x72 href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAABGdBTUEAALGPC/xhBQAAADZQTFRF////2Vxi7bG022Rq//v73XB24oOH1lNa/PHx11Zd55ib9tbY+efo5Y+T8cLE6qSn88zO77m8DLP2lwAAAsxJREFUWMPtV8my6yoMbEAghAHD///sW+DYJBAPZ3PrVUVLD43UmhrgZz/7nxjFsjqrhFmUdWuJ9CcYX4JV3JmyofjHMFFb4cHE6vjMm2r5i9n6wKvFCX81cctdjqvhUzP1Fut+Fb4wWW+E58MlDrMEf43Dt+wKiVa+aes5T3WMS1nn3iuzRVdP8z7kS1LxRL6k4QRzUgXeDe7oLQLSg1POPwhsJSCWEmfsfQ8uDn1hI5CtiM3f3k5Nj6kBimJmVgUYE6q/MGRnfG51FWaZsHOWigxMA7Tx7wgY+JYyBQqfsycTeo9A+XNGhWuqVdqmYePIlG1qJnVJd+k/ad4AOLK21VPuz1Oz2Pqk2AXwpZbY3GjOxVKLBxb7ntbB3NtBlK2w2GOEUbXSeOtddxOg7qBEqO1ryQDFSEBuPKsKSp3rE6DjHMk782qBT8YEj0Xt/OYjd2oCdLw1EZn38lkbF6+C4ox4VKZMgLgHenVL2gAcIe190QHxXaAXQDo8ugTqAl92RkzEYpntsv/dvfwSmuqrg179UoGodQTqqyuorzh1nn4T4ZMws7i9B6ITZpbk3yKz5wXJyYNycCF3c8Ln4EIm+MTnBfk2t1IEQADgdViWVXtsD2LiixYpaio6VmZj9j8+ZMq0aT9msrgWV3oVFACfP2TKdIxQGvRLISC3mZ0BKoPaSdN1m4dlpIJvC01pgl+HzSb55vBndhGkldKE6Cbqzd9dR8w2gmqlyVb7vo7mHzcaBgJPFyT0RGOpBUDfXgdD+oGIePk/i/pEREyW6ba7JjrOnIrbSXCpK8t7gQE4xkcXAU2BwoVE9mmatvHptaxNd0JLfxDaE7JvyOwmF80wct6GldF3L25vl5rPOrp/qQHg9dEtGcC+MJmtfnb52y9+TZVtLfL44tfGYTLCrCIARMMsJuXnV9F2Oc6rax3lnVvzHy/HP/vZP7D/AHaEPqKtY2C6AAAAAElFTkSuQmCC">
+  <link rel=apple-touch-icon sizes=76x76 href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAMAAADwSaEZAAAABGdBTUEAALGPC/xhBQAAADNQTFRF1lNa2V1i6Jue9tjZ/vj422Vr+ebn////3nR5/PDw5IuP8L/B2FZd7rW44X+E883P66iswpeMOAAAAtFJREFUWMPtmMkSoyAQhpu1m533f9o5aBSkFWLNYWoqXJKo+YS/VwD8iwN+sB/sP4M5lTwZAQDCkE/KvYZpJUlAOwRJpd/AXMg9aefl4L6F6UAR+BEp6K9gyt+hAACiV+swnQw8D5P0IszJCLMRpVuCOQ8rw7sF2CKLo8FrFkO7wrSE9SH1Mywx2huZQpKMgWN6hKnxL0JaRES0cgwIox5gehRMnG9PI83re1gYFykR0aaaLCKOesZwC3M0LsQiFgIAKoh2FIHcHYyfmN1eQXY6tRam86hYQQz794BYRtWy5mFqeDRWRKz7j4qIdZi7UDys8omrmRmX5ioLu8gvfHHt9V1qV7y4MwHcrZLKIYYiAKBjObrQzTobWOpYFlFbZfVWDtKW+PcrtqMlDuYvcVK8ESK3pg9ZCOPLJeo8B6Ne1WCacNJNOJnQ24o4mOn8/vD2imhllvYktHcBwHAw0XliPfW1tIl4WKh2/i04WB9E/rR82N3s8B3fB9ZXsLQb7SWsedrYzXZGnULJ3vQTzcidMZ0QAwkKpyOK0kWLmFgzhnNqEhGdcthdaZOVmfkZOdTVAIBoKreTAgBM1X0Y0ywCQGpEG2pSendZjYhapRrstR76aWxGb4/ArlmqmusR+LZvkdI8awClfYElApgIseyLTQTzrDGUE9pSRZsc0Q3Zkc9nY7mIueiuoOiSI1cLGRhTLoS0TXLkirooy9Vpgyj6fMBydert2eZJ5RXbh3S2nFf0XWGN6PLdzfVe43g5O+2HXoPrgj6y8LeeuiBeF3J3Ejz2Zzedo0W2A5p1jmxPK+5gs56W67bvYNNuG9HmxWVmu7BDsZ6DuSvM21d7J8NYc3XvNOzqyCGipne7OkRUbarZnDa3qemL/eYln/pLiThy8Bd79PSZnWyb1JjT13v0rePcTg/OQBcki3t/rlGqpy2XFvK1vD/X+B0s/WD/JOwP7zdvyxyRlQUAAAAASUVORK5CYII=">
+  <link rel=apple-touch-icon sizes=114x114 href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHIAAAByBAMAAAB985hOAAAABGdBTUEAALGPC/xhBQAAADBQTFRF1lNa////2Fpg//r6/fPz5IuP3W1z8cPF2mNo66ms4HyB77a5+unq997f9NLU6JygWhhpOwAABGVJREFUWMPtmF1IVEEUx4cLrtv2IMMuiOjqIkRoZOxDiGbEQikllH1QESY+9EmWWhYKPexLH2SGZiRUlJhBRZGWhFAKIn0/iEkhiQ9KRtFDVhAUEs3cOzM7H3fuvdrrnhevc/d3Z+bM/5w5MwAu1ECSTJJJElnJ1z8HIsA4/WBweF5k6Mv2CLDM2Hs95p1cfYVyJntnzCtZthOIdqrBG1nWBWTLb/BCFnYC1QLH3MnwFmBnS0bdyOBjYG+Hoi7kSERDGnPOZLgT6Cww6kieAHrb70Smxx1If70D2Q+crFlPOnYpdyqQjcDZzujIcLUL6RvVkK/lJTwrL+49ezI4K0XI4ORXKWrSorZkptjDChyVq3+Io+i1Jd+LjrSio1B092E7Mlgh/OYCaf4stKZEbch0YbAGWruSyWG7ZoXcIH88/Cu3dlQeSrcNWSf8ogDCT+jPEQinhfZUlQyJ8XUTZmFd+IZgsRhrMYUU5wN6YY75tw1mAvuJMnKlqLMhMu9uq++EbVXIceH9Ughfmg/nITwqvGlRyFZBBkgrz82nGqQtQQyLZFJwkFGFWoqJpyCcidi5iJLZ3FvfX/w2k3gKffUbN1VjSiI5D/qeWqPAEkixenhTzXtdJDnX7iZNz9BzJXl+pzqXks/Zmzw6kdDxuzvY80X2vkYiExprh/DFjY4hHD1rcWRkNf0+CWERr0uB7GFSj8H1aFYHWW+X0cwvWbM2bbFEziZWOsv80X3y4oP5uaGEUtIkki3nd7iOhhkeLQmybUTGeEElsjqxXK1UKzP7qiD7jy24TyLjTCJE4S0446OsPk4igInML5H0iyn04zfNhaohIkRDoS4yJDIh6Ew63zozBeRQ5bCQ0JIZgIR0q/qvM7nQPt3nCTQeCsRCtr6NMd8amlVBH++hUjHXc5ZIjq2nX6MEdw35dOqjur3Hb6q8bgM6xbvGSpouysBPFp+WWfG5BuiibFrNCRMD0YkBNScUaLMJzUPhav/VOK0puDxUo89g/jnakkvz1Uhcn8Ey+E3lGm4pTeyXr/itpc0hUwNfn5Djy3lQydTi9hloIKUKLkbE8lzZHcQdCRffQezOvKhcnis7krSpg+YYLEJnpHYYlOrPApedFxiVuFPU5SapglN33nSpxENSLcptJyLmrN6twsDhEXwSJYHjWGFwyuVd0Sq1LnatpJCUsPDCcpXd7Vq9mTEuSktbvQUrbD4vD8S2YpTqGrOgIaWNTU0jVsZAXfO3Upt9ZSwPN1VVVkrU0wkgVSlAdScAmB1Xlk4k/VPeTjoqqT3pSKcHZbT8yUEigw8dyWVR/VlwVdzBt/5HTifXRmk9p3WzVMhsLlktF3Xlm3I+oT8Tlcapr9LlbB/qF5J5KZ+YPN9E7OFjxf0mAsKyTnZkSeS1QIOXGxea0jej5xwu6Xu45SnvYhuIlRPy+7zeLG38FSGxiHOpUftxPrdZtyNgytyojHPzuc3Cx+SmXdibWbc6xpJ3jEkySf4X+Q/xB/WdxxGgRAAAAABJRU5ErkJggg==">
+  <link rel=apple-touch-icon sizes=120x120 href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4BAMAAADLSivhAAAABGdBTUEAALGPC/xhBQAAADBQTFRF////1lNa/PHx6Z+i/vj411Zd5IyQ3nJ48Ly/4X6D2V1i7K2w2mNp883P9tnb+ujpQwsZ5wAABL1JREFUWMPtWGuITVEU3q7jkXHvbTfde5s798ctGvlBMx5JNG4p8YM6KYxHmaGURIMUmTxn5BGNkAidpkQyzQijkPyQUsONmTxGSJLwY4pIIfs89jl7r7332ef6odRdP5jOPd/Za6/1rbW+vREqW9nK9l/YxD1rHmCcvb/qcL5U6IK27SZ2bfmWw4VSoManU5ix7Ol30bGxNgvzdn53ZOw+E0NbvPvvsZHRz2VYjBuKEbBjLCy3Dn3KEu1YZWe1STqkxOLcXp3TphqMF4Y7nmzEYbYhFPwjFIurBsMWbg8H43N/v3Do0rFGHRg3KcGztVhcqazOVvjq0gcwc6mdKnLd5V/Mnn71e+AUQD9UgMeDRc7YLs4/DkKmIEod/9qlvLRQaqXYOO91lu7uAA/ujeJ1tV0mY8k/Q6P4DWJ9lERw+tZ6kv12fbxjzbzXRWTcImV4FaEX/Fc3SsAjTehdhf1kmbCfJZG2/NnpAG9QhX7TrQIZ6rzUAPJINm00wnQabqCOCQRYreNmOo8MN4KbEarRMZTfWGoSYlaOTRUYwNs8Lk8nCyjYM0JzufKoEsryI/Nrpt75mUbbnrjT2E+/geBdTH++4+3Ey7PT3W4xaCHcjeJkoAwTJslKNTnTPglcbntWoyYokynS4xbsmfEY0apCsYHJRFgw3fGhktmZQZRYR+bxFd+pHhPn1iP0XcnuoGgvI+QMu0W0RX+zv5vbieJ+S6kE4OEM+UZaPgsLPm8vMAROA/AIhvbf6VeMthN7KYbsxi+dDACP9pM86DGLdIMaEy/K015Qi3767wDwKN+lgpe1TN75Si0aR/Mzx6cYAA8LgpGwvI0l7fQ9ouHoDIKaAuAhQcnETe8rzh8rKGYFkxEVuJIBW07mSgIHbtub3yFxWwmuYgLWTf7rCgI2TwUexaSq241K0R5TRLn1uz90BanKqvLMkeTJqj4ZSXIqhpGe5U281Vxb7aU9TcKw4WzJPHUKg5Z1jR39TJEpvLSyqoh/yZkmvuhrRWO/hZfPYkuyUj2pSDNIDtx4y3SZDzdfc1IJ1nMimP9pWsixg4+NZ75G/xa0oc6QAdtSoJKu4b1FZdv85pAhy3TP7Hr3Ecn3PTu/jmdrsbp7eszw8ljPfM95MzmTHRldYRMD52bxYB4rTgx+tjtDo5VO41iPZrqD8Z8haZ5tp29hARn7sGZKJoBWI53XIJM1NYUkCfzUqVUGuMVZmiwcb8Y6ZSBIXtLmjan2wociCN9xUC9fIEt3FOgIYMIhUUMVwjGKyLg+hF7C59WywwncGmlfSBCP9LFW51dLHZJr/fFYtjnhqVz1xmFkHBp+hODLkZS+K1z64UO50mf6DFM93XAvimMZOCe4i0B3elXnqmt6cKor6olupQhWn+jgWVICbop8ihXBYQdocH4W93wu+sldAIee3MGdQS3Mc/idgTvVWJLsYluT5prFgLqa1eFXdbcsTMdKFXlut+jvhr5YHDioqo7BCLdw/q2Uc7zwhUhDX6T7sJ5A2wR9MXMl2m1asscMOomnnxbfiXqPl9xvuRrWFysXj5Rw+/hkG5UetljJbupDpdiE69to98xuuV3qtanx6/oZJ+8nbn8tXz+XrWz/yv4A7BGlJF9LimwAAAAASUVORK5CYII=">
+  <link rel=apple-touch-icon sizes=144x144 href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQBAMAAAAVaP+LAAAABGdBTUEAALGPC/xhBQAAAC1QTFRF////1lNa2Fpg/vj422Vq9dXX3XB1/O/v8cXH5IyQ7rS3+eTl4H2B6qWo55ebjCOoHgAABZ5JREFUaN7tWd9rHEUcX1jCJTmuOMtx9CQXutBIDK0ciGjSRLrSRNtIOWqoNrbSFLSgKHmx9kFLjNpU1JJYLVJfLq1UpD4Ee2itKL3+MAQR0kSs2pdUsa2l+Dc4uzO3M7PznZ3ZzZNw35c2u3ufnf3++Hw/8x3LalrTmta0pqWyzDO///gYQs7Qwm9PrwZm9DhGIeYMnUgNdfCmi3i77/Z4Ghj76BiK2itvpfisL10k24bPk+Jkf0WgFa4nXM9ppLBCojXZ7yOldSTx07euGgjdP2eM0+ehONtWNnXQn7E4yLllCLQbaayjYoTT6umA0BNGETupxUHOKQOgAVcPhDbq/W3fQCb2lxboUSMc1Klbkn3VDAgta4DaXUOgHg3QpCEOciZicVo8UyA0GAv0OvCL9Qv/XAY+uGM8Yey3T5Wth496yTIAcPUDhDR+cBO5+2uZEBs+PSzfUvOSPSM9/XwYBrmnHFPXvbT+PCOMEQmoO0HM/Gftc0fOgm9Rx20WXP0uD22tgN9dVVGs5AYHA/T5K+nBNbpDAtqvCr70ZBH/PuA5B7+8V7p9rwLoAPQkLZpB6D2FcVMXDVvWGso/uIt7hk7K1KUHV8Jl+i+X62feMIv83K3RhJqD8h7OpDVgWn9F4zcHJXenma+DPsitSO6csLffjJbHNf9qPwX1yT7zSxQJpMmILzec4ZOLpEw2KuNW9Hm9/SkhljQ+9nOeNrdbhJcVK0LVF8I/dwlAXboCca6xF/hLusIWvqQrkjaV3Dh4/IVPxhVipaiJft6PxqtH3iG/z7xGnqAX3tbEfyTC69/vQ87LPC03LvAdIl+J77HHGjryRaYV+saofuQZDuq3nHrAaZwhWeWEWsGmTr4VJntgizIQ956SZeV40n6QK2nunm/TMlBdyI5J9t/sFwtnWJrhj+Ez7oIMxCX2JcuuM2/tDPIx9Ax3E9teGcjjPzx86QTh2kFW012COzfLQC5f0znm9jaaeDXmQI4n1slAQhNqpDlmjxoF7GfJzDWmewyBcD/aQS/1rgqogwGlWdFEyN+4lg7w/xKenjQEwu2qnTk7Rz1cY8wxGwvk8gQaNsMqoch59uthgZTXxebRfvbspWA7ifVfmIUrAilvjs3sbvYha3Gpjf6B+buVfSzfSffG1hoOeuPhwagC7xZlyYXY6vdZ5jNGlcQIMearInNNx/KR79uWiz7ix1yX+dC/cCUiNhbjGdLfRD1yc8uTf/ObqYfubhm6XRY3YhBD8pwdEGPmu28iLTS4YC+heM4WNMRG1h3O/ztl77nDusAbrqaLiBIxdE62jop4//BT6KqZqMiMWk6UItc51bSPKaGsKEhK2t5PRY0g/YApTpeByqbzHQFImgaBSnsGnBQJQkuaBk2bKDYyKaINugeeKoGKrSZPiirh/n0ZnCrl58xULdqGPTMQRKcMTpU6DXU2Qp/SJeEFZeXdkUJnA8o/kHwDZEE7gQ34vOleJJBu9pJfeuBUqWq6NSaENOAPeUagUaJie5yDBg4v4SVhps2OAfdKqmko9DAty17FS2C7qh6mgMOXRct4C0kaErgzVm8g4UwiBZ6FYtadZBJBxX0rtFb1JAKMcUkV0HzMWLMdCpuiDpWbddW3BUzUluzLwOQOgPrN01o5YysogOJnbNZJOFtkIKeqmdSaApXKSUe1CiDtsPaQmY86tYc2mRtGUTOY1h+CgHoTLygiWxqEFElIZ9kysEjbgUrE8EDjsNy7cvCUU3cANSNVf3u026U4qZH5yPikRhyArI0CFSvGOJZ9OkK1nAornLISGKfwhkXOzic8qWNIjwtyLikOd3ZI2lE93clhsIh3PU7dkYzYOpXqfPX8R2yM5jfh/ImzKU98N31w2aXSZRat//m9spXaNo3eJVmz+86zq4BpWtOa1rT/o/0H0TIIE3ITQsAAAAAASUVORK5CYII=">
+  <link rel=apple-touch-icon sizes=152x152 href="data:image/png;base64,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">
+  <link rel=apple-touch-icon sizes=180x180 href="data:image/png;base64,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">
+  <link rel=icon type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAADNQTFRF1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNaNIZnAQAAABF0Uk5T/8lPXuaqtgFFkxnvhS9w+9xPKKDdAAAAjUlEQVQY0z1PURZFIQSUKHVJ+1/tw+m8+RBiZsAMCJM7sWQOc+71QeFbOxt7ZOGecexorMxa7y3fNUFynpAZKbcEuP7tXqsZhuiPrhLQHmwEDn4a6FoK7XiWAGeAnqMwTqjlSkgYopUQFSmptWZKRYplc4iUvw+fMRfxZ+xZR/xbr+Nq4h0XQL5mlzHzH8DBBVNIj/rHAAAAAElFTkSuQmCC" sizes=16x16>
+  <link rel=icon type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAADZQTFRFTGlx1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNadTNRhQAAABF0Uk5TAJ6MDS/IGwPvPnb83LPjZVarT0x5AAABUUlEQVQ4y31TSbbkIAwT2GAzhdL9L9uLIiGpn9daJGA82wJOmNbRnfQ+qhp+YSUcjQvtCOVHJUfnAx7z/b0k/kEqt/fOF/Ty//etkbd/D3OGnU3KAGDxEhwfM7PPcQmiASjbouKT0gd1eyyAhe1A9Ti/C8Gwbz5RGtkKpm8b1NW/I6ohJzJlmMZl1irGSlhFVaAxKkRVdJU20Fc2ebiPDDN8Tyv3ju9/SCDpqmOoOskgX9eOVXDuJJNEMkoi2fNqz6mwpLW1unVJcoVIUhvpReaU4mSrklaIvsqROcYUM7PvaZXfzzK9ZjPkEELIMMvVzzLPRrU0BeqkK2SmdjVqt7qlIrG1KCW1W6tvw6JPiVFu42awx7h5qNltlvTyXBiy4rYNa2HuK8cA3EKm/GdpHwpva31X6OWFOBGIL8TZ1LuS/KHeRd4JzFfynvQvQHnS/x/kYCqg5fFA7AAAAABJRU5ErkJggg==" sizes=32x32>
+  <link rel=icon type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAABGdBTUEAALGPC/xhBQAAADNQTFRFTGlx1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNa1lNafCSWAwAAABB0Uk5TAI8VefcM66nZxUAvaCAEVo1ZuJYAAASFSURBVGjetVpJouQgCBXnKer9T9sLM4uKqd8sK4nM8MBijECJhwzGWS1LKUVq6wzkwBP7E1IhGlePvpPUzsSgfj9dOF26pJ34iQfPZnD6zsNk/vH4TVhZCCSt2L5IL2whkxWrWqjsyhK5vOSLYGRZJGkCXfxoyweykajEti7+oQTJ2d6Vz+T8/Pxsyw9k86zqRF1+Ih2HFSoJWX4kKdJ/PX/MIf7B+aXI2PWvLn9CuuNpb8sfkUWjdaPEv9SaYkaHZJwyc8Eg+hB8hLmqRq07+Fb1t2kpbx0dZp88i2WY6WvDooHg1VE4rBkpTwxkmo7FJyLJR6xyR1JYeQEgvCIZ1d1lEiSXbRVj6L3sx4mRxC0FJsJY/kyUGuZ89tVGVaDAOw6qB4GqwswD0jPGmJejX4ZemIZQKy9QYvsIpNl7tXSlx1smUcrjngtBU9osxmDWwHUguPgECq2J5hBEMMaYGrwjXeRYsl9pyqMbeNCpoYUseIVn+z1Lle+Xbx0GCakh9Dreu2MF6AkZGWOm59vUw3wtfks9b5tuljkMK/NonDMRmwWC6+Ua7oL9fF7L53ViUupS7PEU56ADnsbaVxhfI0Q6DJi/n3qNJ7Poxu8Nxkus4cgXbO+cZHqF9tmy3jDhWV8M7xV9w1xHgQRYS4gA1cevZgCpo4JjtpMeL+fHK05rlMbpJ1UwpjsJDq3Rji5sQ2sQ6BQdzSSaHe+XTbrzhKa6VqEQf0rW6ZCIgJfZLcdVxHroAoPrJ+S0ZQZ8VQO+wMCkxgdPvyMedapxy85AdtCAaMPwAEZua2NSdNCJxMJU+xYZinOFsS8lRIstsWqksUSrHfc5cVaYpnyMtcs9g0CKHhCzaKmwW1Nt4F2LoKlUaC1yeEODxBjjIK/22dRrdbVJCbwtXmfSQn8QTfmA0x6ZrZM/ntbmig/B0MGNe1tXIceYe4vFx1Mc5cncQy3IqKuyiIGxLQtkfdZBkTp0obWOjVtlKTZmW4psXN5b0jiOp1/ttU9Bqy21bgcwlbvozqTRJCQfzkWxaXV2HzzGCbi+xw/O4IilAXRUQ4B8AUgU/PZB41UjZxOa3lcI7Yw23w7XKc3P1kSuZtKFYypKStPtsPbEPUutBSeHej6H6f7qAFOzifrEqpVDPX+br39KJM7hTw71/EBYX12TuCgEDnW6B+Dk9ZggrxJuBlWKuB57rBJIKtyXWFkuKUBU4Zr8lFtUgLaSlWcF93JNYapRxYpF3wOFJ2x9DVr3hkl8X3rN1Xa7UGmurhRfFrMHA4KPkcUsIXcspy2w8NUywQ0nA7vsgD1WNS2yZwx0/HgBQmQwuAKZcKCZaHiJo4YcDgbDKJJCfb6GooTpUP7ZRRoh0SbXaJOrHHN8bNYub8h3vbNaRL7xVUL3V9j9aqoF/c7ao2j2LGARxcqeLRDH7qzzoGPauHqrvzXb0EFHs/DlfwnhxUKfLnwBcguBfaPtsTe+uvi9VkgXN/adlIeTh1MNqpDusX3++P8TL4zV9zyrmaatuW9Uf6K0+Qju1majg+g30t9//gE1829CFmfd2AAAAABJRU5ErkJggg==" sizes=96x96>
+  <link rel=icon type="image/png" href="data:image/png;base64,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" sizes=194x194>
+  <link rel=icon type="image/png" href="data:image/png;base64,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" sizes=192x192>
+  <link rel=manifest href="/manifest.json">
+  <meta name=msapplication-TileColor content="#d5545a">
+  <meta name=msapplication-TileImage content="/mstile-144x144.png">
+  <meta name=theme-color content="#ffffff">
+  <meta name=google-site-verification content=r0n1WMs4LewUifRu3XdXRrPiam11LlXenOSU44gT4q4>
+    <meta property=fb:app_id content=907389352687487>
+    <title>15 Ideias para Decoração de Moranguinho - Vida de Casada</title>
+  
+<!-- This site is optimized with the Yoast SEO plugin v7.5.3 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name=description content="Separei 15 ideias de decoração de Moranguinho para você planejar a festa perfeita para sua filha! Ideias simples, DIY, sugestões de brincadeiras, menu e mais!"/>
+<link rel=canonical href="https://www.blogvidadecasada.com/decoracao-de-moranguinho/"/>
+<meta property=og:locale content=pt_BR />
+<meta property=og:type content=article />
+<meta property=og:title content="15 Ideias para Decoração de Moranguinho - Vida de Casada"/>
+<meta property=og:description content="Separei 15 ideias de decoração de Moranguinho para você planejar a festa perfeita para sua filha! Ideias simples, DIY, sugestões de brincadeiras, menu e mais!"/>
+<meta property=og:url content="https://www.blogvidadecasada.com/decoracao-de-moranguinho/"/>
+<meta property=og:site_name content="Vida de Casada"/>
+<meta property=article:tag content="Decoração de Aniversário"/>
+<meta property=article:tag content=DIY />
+<meta property=article:tag content=Festas />
+<meta property=article:tag content="Festas Infantis"/>
+<meta property=article:section content="Bem Estar"/>
+<meta property=article:published_time content=2018-09-03T08:00:57-03:00 />
+<meta property=article:modified_time content=2018-08-31T18:06:32-03:00 />
+<meta property=og:updated_time content=2018-08-31T18:06:32-03:00 />
+<meta property=og:image content="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho.jpg"/>
+<meta property=og:image:secure_url content="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho.jpg"/>
+<meta property=og:image:width content=800 />
+<meta property=og:image:height content=533 />
+<!-- / Yoast SEO plugin. -->
+
+<link rel=dns-prefetch href='//www.google.com'/>
+<link rel=alternate type="application/rss+xml" title="Feed de comentários para Vida de Casada &raquo; 15 Ideias para Decoração de Moranguinho" href="https://www.blogvidadecasada.com/decoracao-de-moranguinho/feed/"/>
+<link rel=stylesheet id=contact-form-7-css href='https://www.blogvidadecasada.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.0.2' type='text/css' media=all />
+<link rel=stylesheet id=stylemin-css href='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/css/style.min.css?ver=1.1.0' type='text/css' media=all />
+<script>if(document.location.protocol!="https:"){document.location=document.URL.replace(/^http:/i,"https:");}</script><script type='text/javascript' src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/js/jquery.min.js?ver=1.11.3'></script>
+<link rel=alternate type="application/json+oembed" href="https://www.blogvidadecasada.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.blogvidadecasada.com%2Fdecoracao-de-moranguinho%2F"/>
+<link rel=alternate type="text/xml+oembed" href="https://www.blogvidadecasada.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.blogvidadecasada.com%2Fdecoracao-de-moranguinho%2F&#038;format=xml"/>
+
+<!-- This site is using AdRotate v4.12 to display their advertisements - https://ajdg.solutions/products/adrotate-for-wordpress/ -->
+<!-- AdRotate CSS -->
+<style type="text/css" media=screen>.g{margin:0px;padding:0px;overflow:hidden;line-height:1;zoom:1}.g img{height:auto}.g-col{position:relative;float:left}.g-col:first-child{margin-left:0}.g-col:last-child{margin-right:0}.g-1{min-width:1px;max-width:212px}.b-1{margin:1px}.g-2{min-width:1px;max-width:212px}.b-2{margin:1px}@media only screen and (max-width:480px){.g-col,.g-dyn,.g-single{width:100%;margin-left:0;margin-right:0}}</style>
+<!-- /AdRotate CSS -->
+
+
+
+<!-- WP Links CSS-->
+<style type="text/css">
+.wp-links-icon { background:url("https://www.blogvidadecasada.com/wp-content/plugins/wp-links/icons/") no-repeat 100% 50%; padding-right:15px; margin-right: 2px;};
+</style>
+
+		<style type="text/css">.recentcomments a{display:inline!important;padding:0!important;margin:0!important}</style>
+		<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5LG49V2');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body data-rsssl=1>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LG49V2" height=0 width=0 style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!--[if lte IE 9]>
+<div style='border-top: 1px solid #F00; background: #FEEFDA; text-align: center; clear: both; height: 200px; width: 100%; position: fixed; bottom: 0; left: 0; z-index: 100000'>
+  <div style='position: absolute; right: 10px; top: 3px; font-family: Arial, sans-serif; font-weight: bold; font-size: 10px'><a href='#' onclick='javascript:this.parentNode.parentNode.style.display="none"; return false;' style="color: #666; text-decoration: none">Clique aqui para fechar este aviso [x]</a></div>
+  <div style='width: 970px; margin: 0 auto; text-align: left; padding: 0; overflow: hidden; color: black; clear:both'>
+    <div style='width: 75px; float: left; margin-top: 33px; text-align:center'><img src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/icons/icon_warning.png' alt='AVISO!' width='48' height='48'/></div>
+    <div style='width: 535px; float: left; font-family: Arial, sans-serif'>
+      <div style='font-size: 13px; font-weight: bold; margin-top: 25px;'><b>AVISO:</b> Voc&ecirc; est&aacute; usando um navegador desatualizado ou o modo de compatibilidade do seu Internet Explorer est&aacute; ativo!</div>
+      <div style='font-size: 12px; margin-top: 6px; line-height: 20px;'>Recomendamos que use uma das op&ccedil;&otilde;es ao lado para navegar melhor pelo blog e visualizar seus conte&uacute;dos.</div>
+    </div>
+    <div style='width: 48px; float: left; margin-top: 33px; margin-right: 27px; margin-left: 27px;'><a href='http://www.google.com/chrome?hl=pt-BR' rel='external' title='Google Chrome'><img src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/icons/icon_chrome.jpg' width='48' height='48' style='border: none;' alt='Google Chrome'/></a></div>
+    <div style='width: 48px; float: left; margin-right: 27px; margin-top: 33px;'><a href='https://www.mozilla.org/pt-BR/firefox/new/' rel='external' title='Firefox'><img src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/icons/icon_firefox.jpg' width='48' height='48' style='border: none;' alt='Firefox'/></a></div>
+    <div style='width: 48px; float: left; margin-top: 33px;' title='Internet Explorer 10'><a href='http://windows.microsoft.com/en-us/internet-explorer/ie-11-worldwide-languages' rel='external'><img src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/icons/icon_ie.jpg' width='48' height='48' style='border: none;' alt='Internet Explorer 10'/></a></div>
+  </div>
+</div>
+<![endif]-->
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class=container>
+    <div class=navbar-header>
+      <button type=button class="navbar-toggle collapsed" data-toggle=collapse data-target="#navbar" aria-expanded=false aria-controls=navbar>
+        <span class=sr-only>Alternar menu de navega&ccedil;&atilde;o</span>
+        <span class=icon-bar></span>
+        <span class=icon-bar></span>
+        <span class=icon-bar></span>
+      </button>
+      <a class=navbar-brand href="https://www.blogvidadecasada.com/" data-toggle=tooltip data-placement=bottom title="Vida de Casada" rel=home>
+                  <script pagespeed_no_defer="">//<![CDATA[
+(function(){var g=this,h=function(b,d){var a=b.split("."),c=g;a[0]in c||!c.execScript||c.execScript("var "+a[0]);for(var e;a.length&&(e=a.shift());)a.length||void 0===d?c[e]?c=c[e]:c=c[e]={}:c[e]=d};var l=function(b){var d=b.length;if(0<d){for(var a=Array(d),c=0;c<d;c++)a[c]=b[c];return a}return[]};var m=function(b){var d=window;if(d.addEventListener)d.addEventListener("load",b,!1);else if(d.attachEvent)d.attachEvent("onload",b);else{var a=d.onload;d.onload=function(){b.call(this);a&&a.call(this)}}};var n,p=function(b,d,a,c,e){this.f=b;this.h=d;this.i=a;this.c=e;this.e={height:window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight,width:window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth};this.g=c;this.b={};this.a=[];this.d={}},q=function(b,d){var a,c,e=d.getAttribute("pagespeed_url_hash");if(a=e&&!(e in b.d))if(0>=d.offsetWidth&&0>=d.offsetHeight)a=!1;else{c=d.getBoundingClientRect();var f=document.body;a=c.top+("pageYOffset"in window?window.pageYOffset:(document.documentElement||f.parentNode||f).scrollTop);c=c.left+("pageXOffset"in window?window.pageXOffset:(document.documentElement||f.parentNode||f).scrollLeft);f=a.toString()+","+c;b.b.hasOwnProperty(f)?a=!1:(b.b[f]=!0,a=a<=b.e.height&&c<=b.e.width)}a&&(b.a.push(e),b.d[e]=!0)};p.prototype.checkImageForCriticality=function(b){b.getBoundingClientRect&&q(this,b)};h("pagespeed.CriticalImages.checkImageForCriticality",function(b){n.checkImageForCriticality(b)});h("pagespeed.CriticalImages.checkCriticalImages",function(){r(n)});var r=function(b){b.b={};for(var d=["IMG","INPUT"],a=[],c=0;c<d.length;++c)a=a.concat(l(document.getElementsByTagName(d[c])));if(0!=a.length&&a[0].getBoundingClientRect){for(c=0;d=a[c];++c)q(b,d);a="oh="+b.i;b.c&&(a+="&n="+b.c);if(d=0!=b.a.length)for(a+="&ci="+encodeURIComponent(b.a[0]),c=1;c<b.a.length;++c){var e=","+encodeURIComponent(b.a[c]);131072>=a.length+e.length&&(a+=e)}b.g&&(e="&rd="+encodeURIComponent(JSON.stringify(s())),131072>=a.length+e.length&&(a+=e),d=!0);t=a;if(d){c=b.f;b=b.h;var f;if(window.XMLHttpRequest)f=new XMLHttpRequest;else if(window.ActiveXObject)try{f=new ActiveXObject("Msxml2.XMLHTTP")}catch(k){try{f=new ActiveXObject("Microsoft.XMLHTTP")}catch(u){}}f&&(f.open("POST",c+(-1==c.indexOf("?")?"?":"&")+"url="+encodeURIComponent(b)),f.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),f.send(a))}}},s=function(){var b={},d=document.getElementsByTagName("IMG");if(0==d.length)return{};var a=d[0];if(!("naturalWidth"in a&&"naturalHeight"in a))return{};for(var c=0;a=d[c];++c){var e=a.getAttribute("pagespeed_url_hash");e&&(!(e in b)&&0<a.width&&0<a.height&&0<a.naturalWidth&&0<a.naturalHeight||e in b&&a.width>=b[e].k&&a.height>=b[e].j)&&(b[e]={rw:a.width,rh:a.height,ow:a.naturalWidth,oh:a.naturalHeight})}return b},t="";h("pagespeed.CriticalImages.getBeaconData",function(){return t});h("pagespeed.CriticalImages.Run",function(b,d,a,c,e,f){var k=new p(b,d,a,e,f);n=k;c&&m(function(){window.setTimeout(function(){r(k)},0)})});})();pagespeed.CriticalImages.Run('/mod_pagespeed_beacon','http://www.blogvidadecasada.com/decoracao-de-moranguinho/','FqNP4PC0kh',true,false,'6xr9M0hmASk');
+//]]></script><img src="https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/simbolo-vida-de-casada.svg" onerror="this.src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/simbolo-vida-de-casada.png'" alt="Vida de Casada" width=26 height=26 pagespeed_url_hash=2293665773 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+              </a>
+    </div>
+    <div id=navbar class="navbar-collapse collapse">
+      <ul id=menu-menu-1 class="nav navbar-nav navbar-right"><li id=menu-item-86 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-86 dropdown"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/" data-toggle=dropdown data-target="#" class=dropdown-toggle>Receber em Casa</a>
+<ul class=dropdown-menu>
+	<li id=menu-item-8978 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8978"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/recebendo-amigos/">Recebendo Amigos</a></li>
+	<li id=menu-item-8962 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8962"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/dicas-para-receber-em-casa/">Dicas para Receber em Casa</a></li>
+	<li id=menu-item-8974 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8974"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/etiqueta/">Etiqueta</a></li>
+	<li id=menu-item-8972 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8972"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/cafe-da-manha/">Café da Manhã</a></li>
+	<li id=menu-item-8971 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8971"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/almoco/">Almoço</a></li>
+	<li id=menu-item-8976 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8976"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/jantar/">Jantar</a></li>
+	<li id=menu-item-8977 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8977"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/lanche-da-tarde/">Lanche da Tarde</a></li>
+	<li id=menu-item-8975 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8975"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/festas/">Festas</a></li>
+	<li id=menu-item-8961 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8961"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/receitas/">Receitas</a></li>
+	<li id=menu-item-8973 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8973"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/espaco-leitora/">Espaço Leitora</a></li>
+	<li id=menu-item-8979 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8979"><a href="https://www.blogvidadecasada.com/category/receber-em-casa/recepcoes-tematicas/">Recepções Temáticas</a></li>
+</ul>
+</li>
+<li id=menu-item-84 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-84 dropdown"><a href="https://www.blogvidadecasada.com/category/decor/" data-toggle=dropdown data-target="#" class=dropdown-toggle>Decor</a>
+<ul class=dropdown-menu>
+	<li id=menu-item-8985 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8985"><a href="https://www.blogvidadecasada.com/category/decor/sala-de-estar/">Sala de Estar</a></li>
+	<li id=menu-item-8984 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8984"><a href="https://www.blogvidadecasada.com/category/decor/quarto/">Quarto</a></li>
+	<li id=menu-item-8981 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8981"><a href="https://www.blogvidadecasada.com/category/decor/cozinha/">Cozinha</a></li>
+	<li id=menu-item-8980 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8980"><a href="https://www.blogvidadecasada.com/category/decor/banheiro/">Banheiro</a></li>
+	<li id=menu-item-8986 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8986"><a href="https://www.blogvidadecasada.com/category/decor/varanda/">Varanda</a></li>
+	<li id=menu-item-8983 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8983"><a href="https://www.blogvidadecasada.com/category/decor/escritorio/">Escritório</a></li>
+	<li id=menu-item-8982 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8982"><a href="https://www.blogvidadecasada.com/category/decor/dicas-de-decoracao/">Dicas de Decoração</a></li>
+</ul>
+</li>
+<li id=menu-item-83 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-83 dropdown"><a href="https://www.blogvidadecasada.com/category/casamento/" data-toggle=dropdown data-target="#" class=dropdown-toggle>Casamento</a>
+<ul class=dropdown-menu>
+	<li id=menu-item-8993 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8993"><a href="https://www.blogvidadecasada.com/category/casamento/relacionamento/">Relacionamento</a></li>
+	<li id=menu-item-8990 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8990"><a href="https://www.blogvidadecasada.com/category/casamento/meu-casamento/">Meu Casamento</a></li>
+	<li id=menu-item-8992 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8992"><a href="https://www.blogvidadecasada.com/category/casamento/organizacao-e-preparativos/">Organização e Preparativos</a></li>
+	<li id=menu-item-8989 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8989"><a href="https://www.blogvidadecasada.com/category/casamento/enxoval/">Enxoval</a></li>
+	<li id=menu-item-8988 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8988"><a href="https://www.blogvidadecasada.com/category/casamento/cha-de-panela-e-cha-de-lingerie/">Chá de Panela e Chá de Lingerie</a></li>
+	<li id=menu-item-8987 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8987"><a href="https://www.blogvidadecasada.com/category/casamento/casamentos-reais/">Casamentos Reais</a></li>
+	<li id=menu-item-10513 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10513"><a target=_blank href="https://www.blogvidadecasada.com/tag/blog-de-casamento">Site de Casamento</a></li>
+</ul>
+</li>
+<li id=menu-item-82 class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-82 dropdown"><a href="https://www.blogvidadecasada.com/category/bem-estar/" data-toggle=dropdown data-target="#" class=dropdown-toggle>Bem Estar</a>
+<ul class=dropdown-menu>
+	<li id=menu-item-8969 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8969"><a href="https://www.blogvidadecasada.com/category/bem-estar/receita-fit/">Receita Fit</a></li>
+	<li id=menu-item-8966 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8966"><a href="https://www.blogvidadecasada.com/category/bem-estar/dieta-e-alimentacao-saudavel/">Dieta e Alimentação Saudável</a></li>
+	<li id=menu-item-8970 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8970"><a href="https://www.blogvidadecasada.com/category/bem-estar/vida-de-juliana/">Vida de Juliana</a></li>
+	<li id=menu-item-8964 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8964"><a href="https://www.blogvidadecasada.com/category/bem-estar/comprinhas-e-recebidos/">Comprinhas e Recebidos</a></li>
+	<li id=menu-item-8963 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8963"><a href="https://www.blogvidadecasada.com/category/bem-estar/bate-papo/">Bate papo</a></li>
+	<li id=menu-item-8968 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8968"><a href="https://www.blogvidadecasada.com/category/bem-estar/noticias-e-novidades/">Notícias e Novidades</a></li>
+	<li id=menu-item-8967 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8967"><a href="https://www.blogvidadecasada.com/category/bem-estar/mensagens-comemorativas/">Mensagens comemorativas</a></li>
+	<li id=menu-item-8965 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8965"><a href="https://www.blogvidadecasada.com/category/bem-estar/dicas-de-presente/">Dicas de Presente e Passeios</a></li>
+</ul>
+</li>
+<li id=menu-item-85 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-85 dropdown"><a href="https://www.blogvidadecasada.com/category/dicas-de-casada/" data-toggle=dropdown data-target="#" class=dropdown-toggle>Dicas de Casada</a>
+<ul class=dropdown-menu>
+	<li id=menu-item-8997 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8997"><a href="https://www.blogvidadecasada.com/category/dicas-de-casada/organizacao-da-casa/">Organização da casa</a></li>
+	<li id=menu-item-8996 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8996"><a href="https://www.blogvidadecasada.com/category/dicas-de-casada/limpeza-e-faxina/">Limpeza e Faxina</a></li>
+	<li id=menu-item-8995 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8995"><a href="https://www.blogvidadecasada.com/category/dicas-de-casada/diy-faca-voce-mesma/">DIY &#8211; Faça Você mesma</a></li>
+	<li id=menu-item-8994 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8994"><a href="https://www.blogvidadecasada.com/category/dicas-de-casada/dicas-de-dona-de-casa/">Dicas de Dona de Casa</a></li>
+</ul>
+</li>
+<li id=menu-item-87 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-87 dropdown"><a href="https://www.blogvidadecasada.com/category/viagens/" data-toggle=dropdown data-target="#" class=dropdown-toggle>Viagens</a>
+<ul class=dropdown-menu>
+	<li id=menu-item-9000 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9000"><a href="https://www.blogvidadecasada.com/category/viagens/dicas-de-passeios/">Dicas de Passeios</a></li>
+	<li id=menu-item-9001 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9001"><a href="https://www.blogvidadecasada.com/category/viagens/organizacao-de-mala/">Organização de Mala</a></li>
+	<li id=menu-item-8999 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8999"><a href="https://www.blogvidadecasada.com/category/viagens/dicas-de-hoteis/">Dicas de Hóteis</a></li>
+	<li id=menu-item-8998 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8998"><a href="https://www.blogvidadecasada.com/category/viagens/compras-de-viagens/">Compras de viagens</a></li>
+</ul>
+</li>
+<li id=menu-item-78 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-78"><a href="https://www.blogvidadecasada.com/contato/">Contato</a></li>
+
+          <li class=facebook-nav>
+              <a href='https://www.facebook.com/vidadecasada' target=_blank class=facebook-bt data-toggle=modal data-target='#fb-modal'>
+                  <i class=icon-facebook-squared></i> 0
+              </a>
+          </li>
+        </ul>    </div><!--/.navbar-collapse.collapse -->
+  </div>
+</nav>
+
+<header>
+  <div class="site-header container text-center">
+      <a href="https://www.blogvidadecasada.com/" title="Vida de Casada" rel=home>
+                  <img src="https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/logo.svg" onerror="this.src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/logo.png'" alt="Vida de Casada" width=168 height=163 pagespeed_url_hash=3537438390 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+              </a>
+  </div>
+</header>
+
+
+<main>
+  <div class="main container">  <div class=row>
+    <div class=col-sm-8>
+      <div class=row>
+        <div class=col-xs-12>
+          <!-- Anuncios do Topo -->
+          <ins class=adsbygoogle style=display:block data-ad-client=ca-pub-9124784949952703 data-ad-slot=5087579872 data-ad-format=auto></ins>
+          <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+          <br><br>
+        </div>
+      </div><!--/ads google -->
+        <div id=content class=site-content>
+    			<article id=post-12124 class="post-12124 post type-post status-publish format-standard has-post-thumbnail hentry category-bem-estar category-destaque tag-decoracao-de-aniversario tag-diy tag-festas tag-festas-infantis">
+  <header class=entry-header>
+          <div class="entry-title clearfix">
+        <h1 style="padding:0;margin:0;float:left;font-size:21px;font-weight:normal;line-height:30px;">15 Ideias para Decoração de Moranguinho</h1>
+        <div class=data-personalizada><div class="site-icon pull-left"><i class="fa icon-calendar-empty"></i></div>03/09/18</div>
+      </div>
+      </header><!-- .entry-header -->
+      <div class=entry-content>
+      <p>Se você me acompanha aqui, no Youtube ou nas redes sociais já sabe da notícia: estou esperando minha primeira filha! Desde o momento que descobri que teria uma menina, não consegui evitar de sonhar com várias coisas. Inclusive, com festinhas. E hoje trouxe uma inspiração disso: de <b>decoração de Moranguinho.</b></p>
+<p>Aqui no blog já compartilhei uma <a href="https://www.blogvidadecasada.com/decoracao-de-festa-infantil-de-frozen/" target=_blank rel=noopener target=_blank rel=noopener>decoração de festa infantil de Frozen</a>, que também é ótimo para meninas. Mas hoje queria vir com outra ideia muito fofa e meiga em tons que eu amo: a decoração de festa infantil temática de Moranguinho! Vamos conferir?!</p>
+<p><img class="alignnone wp-image-12130 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho.jpg" alt="decoracao de Moranguinho" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=785822016 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h1><span style="color: #c22929;"><b>15 Ideias para decoração de Moranguinho</b></span></h1>
+<h2><span style="color: #339966;"><b>Bolo de morango</b></span></h2>
+<p>A minha primeira dica é até um pouco óbvia, mas quando pensamos em uma festa temática da Moranguinho, o primeiro sabor de bolo que vem à mente é de morango, não é mesmo? Se você e sua filha gostarem desse sabor, seguir com ele é uma ótima pedida!<span class=Apple-converted-space> </span></p><div class='code-block code-block-1' style='margin: 8px 0; clear: both;'>
+<ins class=adsbygoogle style="display:block; text-align:center;" data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-9124784949952703 data-ad-slot=1161617287></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+<p>Você pode ainda misturar com chocolate branco, chocolate preto, côco, com leite de moça… Existem diversas combinações diferentes e deliciosas com morango que vão ser um sucesso!<span class=Apple-converted-space> </span></p>
+<p><img class="alignnone wp-image-12126 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-de-morango.jpg" alt="bolo de morango" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-de-morango.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-de-morango-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=458683383 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Bolo decorativo</b></span></h2>
+<p>Mas caso morango não seja o sabor de bolo desejado, outra opção é que o exterior do bolo seja temático e decorativo, algo relacionado à Moranguinho. Nesse caso você pode tanto fazer você mesma — e pode ser um bolo falso ou não — quanto encomendar de alguém.<span class=Apple-converted-space> </span></p>
+<p>E as opções são várias também! O bolo pode ser simples, imitando um grande morango, por exemplo. Redondo, vermelho e com pintinhas pretas. Inclusive, uma opção fácil para quem vai fazer em casa, mas não é mestre de confeitaria. E pode ser mais elaborado, com personagens da Moranguinho e outros detalhes.</p><div class='code-block code-block-2' style='margin: 8px 0; clear: both;'>
+<ins class=adsbygoogle style="display:block; text-align:center;" data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-9124784949952703 data-ad-slot=2429190475></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+<p><img class="alignnone wp-image-12125 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-da-moranguinho.jpg" alt="bolos tematicos da Moranguinho" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-da-moranguinho.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-da-moranguinho-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=3505235473 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/><img class="alignnone wp-image-12133 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-tematico-de-Moranguinho.jpg" alt="bolo tematico da Moranguinho" width=800 height=1102 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-tematico-de-Moranguinho.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Bolo-tematico-de-Moranguinho-768x1058.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=3399779330 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Chá da tarde temático</b></span></h2>
+<p>Uma ideia legal para uma festa temática de Moranguinho é um chá da tarde. Se você tiver um local ao ar livre, como a área externa do seu prédio, por exemplo, vai ser ainda mais perfeito. Você pode preparar tudo como se fosse um chá das cinco, com decoração de moranguinho.</p>
+<p>Você pode deixar bules conjuntos de chá de plástico nas mesinhas onde as crianças vão se sentar. Eles podem ser decorados com a Moranguinho ou até mesmo em cores relacionadas ao tema, como rosa claro ou verde claro, por exemplo.<span class=Apple-converted-space> </span></p>
+<p>Nesse caso, você pode procurar guardanapos da Moranguinho para incrementar a decoração da mesa! O menu da festa vai ser bem mais simples, pois você só vai precisar servir sanduíches, bolos e biscoitos, como em um chá. E tenho certeza que as meninas vão se divertir muito!</p>
+<p><img class="alignnone wp-image-12127 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cha-da-tarde-tematico-da-Moranguinho.jpg" alt="cha da tarde de Moranguinho" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cha-da-tarde-tematico-da-Moranguinho.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cha-da-tarde-tematico-da-Moranguinho-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=2335855973 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Plantas para decorar</b></span></h2>
+<p>Um jeito simples de decorar a festa é com plantas! E elas nem precisam ser verdadeiras, viu? Você pode comprar ou alugar plantas falsas para te ajudar a decorar e deixar sua festa ainda mais bonita. E ainda vai dar um ar de vida e elegância muito legal para a decoração!</p>
+<h2><span style="color: #339966;"><b>Cantinho da beleza</b></span></h2>
+<p>Outra ideia legal é criar uma área de beleza para as meninas se maquiarem, se vestirem e se pentearem. Você pode separar acessórios temáticos, todos nas cores do tema: rosa, vermelhos e verdes, e também acessórios da Moranguinho.<span class=Apple-converted-space> </span></p>
+<p>Inclusive, coisas de morango, como brilho de boca com sabor, maquiagem com cheirinho… Saias de tutu rosa que você mesma pode fazer em casa, dentre outras diversas opções!</p>
+<h2><span style="color: #339966;"><b>Copos e pratinhos na cor temática</b></span></h2>
+<p>Uma ideia bem simples de incrementar a decoração sem precisar se esforçar, é comprando copinhos e pratinhos nas cores do tema. Para isso, faça um jogo de cores interessante. Por exemplo: copo rosa claro, pratinho vermelho e guardanapo verde claro.<span class=Apple-converted-space> </span></p>
+<p><img class="alignnone wp-image-12141 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Ideias-de-decoracao-de-Moranguinho.jpg" alt="ideias para decoracao de festa infantil Moranguinho" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Ideias-de-decoracao-de-Moranguinho.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Ideias-de-decoracao-de-Moranguinho-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=2931054140 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Morangos falsos para decorar</b></span></h2>
+<p>Quando pensamos em uma festa de Moranguinho, pensamos em uma decoração cheia de morangos, não é mesmo? Mas não precisa ser necessariamente a fruta. Você pode criar morangos falsos para decorar com balão!<span class=Apple-converted-space> </span></p>
+<p>Basta pegar balões vermelhos, fazer as pintinhas pretas com caneta e recortar um papel verde no formato da folha da fruta e colar em cima. Vai ficar lindo, além de ser super fácil!</p>
+<p><img class="alignnone wp-image-12131 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Morangos-feitos-de-balao.jpg" alt="morango feito com balao" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Morangos-feitos-de-balao.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Morangos-feitos-de-balao-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=74444228 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Marshmallows de morango com chocolate</b></span></h2>
+<p>Uma ideia de comidinha temática, gostosa e simples para você incrementar o seu <a href="https://www.blogvidadecasada.com/menu-de-festa-infantil/" target=_blank rel=noopener target=_blank rel=noopener>menu de festa infantil</a> temática de Moranguinho, é pegar marshmallows de morango e mergulhá-los em chocolate derretido. Espere secar, coloque em palitos de churrasco e use para decorar a mesa do doce!<span class=Apple-converted-space> </span></p>
+<p>Você pode, por exemplo, pegar uma meia esfera de isopor para espetar os palitos para que os marshmallows fiquem ainda mais bonitos e bem expostos!<span class=Apple-converted-space> </span></p>
+<p><img class="alignnone wp-image-12139 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Marshmallows-com-chocolate.jpg" alt="marshmallow com chocolate" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Marshmallows-com-chocolate.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Marshmallows-com-chocolate-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=701257552 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Cupcakes decorativos</b></span></h2>
+<p>É claro que eu não poderia deixar os queridos cupcakes de fora da minha lista de ideias para decoração de Moranguinho! Afinal, além de deliciosos esses bolinhos também ajudam super na decoração de festa infantil.</p>
+<p>Você pode fazer cupcakes com uma cobertura simples de glacê vermelho, por exemplo, que já vai ficar lindo. E se você souber mexer com pasta americana, pode fazer cupcakes mais elaborados também.</p>
+<p><img class="alignnone wp-image-12136 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cupcakes-da-Moranguinho.jpg" alt="cupcakes de morango" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cupcakes-da-Moranguinho.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cupcakes-da-Moranguinho-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=3533400428 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/> <img class="alignnone wp-image-12138 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cupcake-da-Moranguinho.jpg" alt="cupcake da Moranguinho" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cupcake-da-Moranguinho.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Cupcake-da-Moranguinho-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=948563275 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Plante seu pé de morango</b></span></h2>
+<p>Outra ideia legal para divertir as crianças é criar uma estação “verde”, onde elas possam plantar suas próprias flores. Pode ser um pé de morango, ou até mesmo sementes de flores coloridas — das cores vermelho ou rosa.<span class=Apple-converted-space> </span></p>
+<p>Para isso, separei baldinhos nas cores temáticas da festa, terra, acessórios de jardinagem que as crianças possam usar, água, aventais, luvas e garanta que pelo menos um adulto esteja sempre por perto para ajudá-las!</p>
+<p><img class="alignnone wp-image-12129 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho-plantas.jpg" alt="vasos com planta Moranguinho" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho-plantas.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho-plantas-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=2704477112 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Pintura temática</b></span></h2>
+<p>Algo que sempre vemos em festas infantis e com razão, porque as crianças adoram, são as pinturas de rosto e corpo. E você pode, inclusive, pedir à pessoa que você contratou para fazer pinturas mais temáticas relacionadas ao universo da Moranguinho.<span class=Apple-converted-space> </span></p>
+<h2><span style="color: #339966;"><b>Estação para decorar chapéu</b></span></h2>
+<p>A Moranguinho, tanto a mais antiga quanto a versão mais moderna do desenho, é conhecida por ter seu lindo e vistoso chapéu. E por que não dar às crianças uma oportunidade de decorar um chapéu elas mesmas que elas possam levar para casa depois?</p>
+<p>Para isso você vai precisar disponibilizar diversos materiais: brilhos, cola, pingentes, lantejoulas, linhas… Tudo que você conseguir reunir, deixe lá! As crianças são bem criativas, você vai se surpreender!</p>
+<h2><span style="color: #339966;"><b>Jogo divertido para festa de Moranguinho</b></span></h2>
+<p>Se você gosta de planejar brincadeiras divertidas para festa, você vai amar essa ideia! Basta você criar aqueles morangos falsos de balão que expliquei acima. Mas dentro de cada um, você vai colocar uma prenda.</p>
+<p>Elas podem ser: “rodar cinco vezes bem rápido”, “distribuir três abraços de urso” ou “cantar sua música favorita em uma voz engraçada”. Coisas simples, engraçadinhas e que as crianças vão achar divertidas.<span class=Apple-converted-space> </span></p>
+<p>A brincadeira acontece assim: de dupla em dupla, você vai entregar um balão para cada criança e elas vão precisar estourá-lo. Quem conseguir primeiro, vai precisar realizar a prenda para ganhar um brinde. Faça isso por quantas rodadas quiser, ou achar legal.<span class=Apple-converted-space> </span></p>
+<p>Os brindes podem ser chocolates, acessórios da Moranguinho, kit de maquiagem para criança, etc.<span class=Apple-converted-space> </span></p>
+<p><img class="alignnone wp-image-12128 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho-festa-infantil.jpg" alt="ideias decoracao de Moranguinho" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho-festa-infantil.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho-festa-infantil-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=1328895356 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Piquenique temático</b></span></h2>
+<p>Assim como fazer um chá da tarde é uma opção, outra ideia legal é fazer um piquenique temático da Moranguinho. Também combina muito com um local ao ar livre. Para isso, você pode espalhar toalhas de mesa xadrez no chão e fazer lanches parecidos com o do chá: biscoitos, sanduíches…</p>
+<p>Se fizer em um jardim, use o espaço ao seu favor. Coloque decorações nas árvores, use as plantas. O próprio local já vai ser lindo!<span class=Apple-converted-space> </span></p>
+<p><img class="alignnone wp-image-12140 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Piquenique-da-Moranguinho.jpg" alt="piquenique tematico da Moranguinho" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Piquenique-da-Moranguinho.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Piquenique-da-Moranguinho-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=1318036379 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Pompons verdes e vermelhos</b></span></h2>
+<p>Uma dica muito simples de decoração é usar pompons de papel. Você encontra eles em lojas de acessórios de festa, e também pode fazê-los em casa. Eles são um ótimo jeito de incrementar a decoração gastando pouco. Você pode fazer pompons verdes, vermelhos e rosas também.<span class=Apple-converted-space> </span></p>
+<p><img class="alignnone wp-image-12132 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Pompons-de-papel-decoracao-de-festa-infantil.jpg" alt="decoracao de festa infantil de moranguinho com pompom de papel" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Pompons-de-papel-decoracao-de-festa-infantil.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Pompons-de-papel-decoracao-de-festa-infantil-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=3970017018 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/> <img class="alignnone wp-image-12134 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Pompom-de-papel.jpg" alt="decoracao de festa infantil com pompom de papel" width=800 height=1102 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Pompom-de-papel.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Pompom-de-papel-768x1058.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=874294204 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<h2><span style="color: #339966;"><b>Menu saudável com suco de morango</b></span></h2>
+<p>Minha última dica tem a ver com o menu da festa: se for a época certa, você pode servir sucos naturais, como de morango, que vão combinar bem com o tema da festa! A verdade é que refrigerantes são gostosos, mas se damos a oportunidade das crianças provarem sucos naturais, elas às vezes os acham até mais deliciosos!<span class=Apple-converted-space> </span></p>
+<p>É um jeito de criar um menu mais saudável. E claro, você pode servir várias frutas também, principalmente morangos! Além de gostosas, também são saudáveis!</p>
+<p><img class="alignnone wp-image-12137 size-full" src="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Suco-de-morango.jpg" alt="suco de morango" width=800 height=533 srcset="https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Suco-de-morango.jpg 800w, https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Suco-de-morango-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" pagespeed_url_hash=4129607961 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></p>
+<p>Espero que você tenha gostado de conferir essas <b>dicas e ideias de decoração de Moranguinho para festa infantil! </b>Se você usar alguma das dicas para fazer a festa da sua filha me conta aqui nos comentários! Eu vou amar!</p>
+<p>E você pode sempre me enviar as fotos e os detalhes lá no <span style="color: #d66dbe;"><strong>contato@blogvidadecasada.com</strong></span> e aparecer no <b>Espaço Leitora!</b></p>
+<p>Se quiser mais dicas, aqui no blog você também encontra ideias incríveis de <a href="https://www.blogvidadecasada.com/decoracao-de-festa-infantil-de-minions/" target=_blank rel=noopener target=_blank rel=noopener>decoração de festa infantil de Minions</a>, <a href="https://www.blogvidadecasada.com/decoracao-de-festa-infantil-de-frozen/" target=_blank rel=noopener target=_blank rel=noopener>decoração de festa infantil de Frozen</a> e <a href="https://www.blogvidadecasada.com/menu-de-festa-infantil/" target=_blank rel=noopener target=_blank rel=noopener>sugestões para menu de festa infantil</a>! Não deixe de conferir!</p>
+<p>Beijos e até a próxima!</p>
+    </div><!-- .entry-content -->
+    <footer class=entry-meta>
+    <div class=row>
+      <div class="col-md-3 col-sm-4 col-xs-5">
+          <span>Postado em:</span><br>
+          <a href="https://www.blogvidadecasada.com/category/bem-estar/">Bem Estar</a>        <br>
+        <span>Por:</span><br>
+        <a href="https://www.blogvidadecasada.com/author/estagio/">Fernanda Rebuzzi</a>
+        <br class="visible-sm visible-xs">
+      </div>
+      <div class="col-md-4 col-sm-8 col-xs-7">
+        <span>Tags:</span><br><a href="https://www.blogvidadecasada.com/tag/decoracao-de-aniversario/" rel=tag>Decoração de Aniversário</a>, <a href="https://www.blogvidadecasada.com/tag/diy/" rel=tag>DIY</a>, <a href="https://www.blogvidadecasada.com/tag/festas/" rel=tag>Festas</a>, <a href="https://www.blogvidadecasada.com/tag/festas-infantis/" rel=tag>Festas Infantis</a>      </div>
+      <div class="col-md-5 col-sm-12">
+        <div class=comments-link>
+                  <div class="comment-icon pull-left"><i class=icon-comment-empty></i></div>
+          <a href="#respond"><span class=leave-reply>COMENTE</span></a>
+                </div>
+        <p class=share-content><span>Compartilhe:</span>
+          <a href="http://www.facebook.com/share.php?u=https://www.blogvidadecasada.com/decoracao-de-moranguinho/" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" data-toggle=tooltip title="Compartilhe no Facebook"><i class=icon-facebook></i></a>
+          <a href="http://pinterest.com/pin/create/button/?url=https://www.blogvidadecasada.com/decoracao-de-moranguinho/&media=https://www.blogvidadecasada.com/wp-content/uploads/2018/08/Decoracao-de-Moranguinho.jpg&description=15%20Ideias%20para%20Decora%C3%A7%C3%A3o%20de%20Moranguinho" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" data-toggle=tooltip title="Compartilhe no Pinterest"><i class=icon-pinterest></i></a>
+          <a href="https://twitter.com/intent/tweet?text=15%20Ideias%20para%20Decora%C3%A7%C3%A3o%20de%20Moranguinho&url=https://www.blogvidadecasada.com/decoracao-de-moranguinho/&hashtags=blogvidadecasada" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" data-toggle=tooltip title="Compartilhe no Twitter"><i class=icon-twitter></i></a>
+          <a href="https://plus.google.com/share?url=https://www.blogvidadecasada.com/decoracao-de-moranguinho/" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" data-toggle=tooltip title="Compartilhe no Google+"><i class=icon-google-plus></i></a>
+        </p>
+      </div>
+    </div>
+  </footer><!-- .entry-meta -->
+</article><!-- #post -->            <div class=related-posts>
+              <div class=row>
+                <div class=col-xs-12>
+                  <h3 class=related_post_title>Posts relacionados</h3>
+                </div>
+                                  <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a href="https://www.blogvidadecasada.com/animacoes-para-assistir-com-as-criancas/">
+                      <img src="https://www.blogvidadecasada.com/wp-content/uploads/2017/09/animacoes-para-assistir-com-as-criancas-150x150.jpg" class="img-responsive center-block" alt="47 Animações para Assistir com as Crianças" pagespeed_url_hash=2979610934 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                      <h4 class=rp_title>47 Animações para Assistir com as Crianças</h4>
+                    </a>
+                  </div>
+                                  <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a href="https://www.blogvidadecasada.com/decoracao-de-festa-infantil-de-frozen/">
+                      <img src="https://www.blogvidadecasada.com/wp-content/uploads/2017/08/decoracao-de-festa-infantil-de-Frozen-150x150.jpg" class="img-responsive center-block" alt="Decoração de Festa Infantil de Frozen — 15 Ideias DIY!" pagespeed_url_hash=1126919189 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                      <h4 class=rp_title>Decoração de Festa Infantil de Frozen — 15 Ideias DIY!</h4>
+                    </a>
+                  </div>
+                                  <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a href="https://www.blogvidadecasada.com/como-enfeitar-uma-festa-de-aniversario-simples/">
+                      <img src="https://www.blogvidadecasada.com/wp-content/uploads/2017/08/como-enfeitar-uma-festa-de-aniversario-simples-150x150.jpg" class="img-responsive center-block" alt="Como Enfeitar Uma Festa de Aniversário Simples &#8211; 13 Ideias DIY!" pagespeed_url_hash=3295938120 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                      <h4 class=rp_title>Como Enfeitar Uma Festa de Aniversário Simples &#8211; 13 Ideias DIY!</h4>
+                    </a>
+                  </div>
+                                  <div class="col-md-3 col-sm-6 col-xs-6">
+                    <a href="https://www.blogvidadecasada.com/decoracao-de-festa-infantil-de-minions/">
+                      <img src="https://www.blogvidadecasada.com/wp-content/uploads/2017/07/decoracao-de-festa-infantil-tematica-minions-150x150.jpg" class="img-responsive center-block" alt="Decoração de Festa Infantil de Minions &#8211; 12 Ideias!" pagespeed_url_hash=2178702956 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                      <h4 class=rp_title>Decoração de Festa Infantil de Minions &#8211; 12 Ideias!</h4>
+                    </a>
+                  </div>
+                              </div>
+            </div>
+            <!-- Anuncios Posts Relacionados -->
+            <ins class=adsbygoogle style=display:block data-ad-format=autorelaxed data-ad-client=ca-pub-9124784949952703 data-ad-slot=7169580293></ins>
+            <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+              				  <div id=comments class=comments-area>
+	<div id=respond class=comment-respond>
+		<h3 id=reply-title class=comment-reply-title>Deixe uma resposta <small><a rel=nofollow id=cancel-comment-reply-link href="/decoracao-de-moranguinho/#respond" style="display:none;">Cancelar resposta</a></small></h3>			<form action="https://www.blogvidadecasada.com/wp-comments-post.php" method=post id=commentform class=comment-form>
+				<p class=comment-notes><span id=email-notes>O seu endereço de e-mail não será publicado.</span> Campos obrigatórios são marcados com <span class=required>*</span></p><p class=comment-form-comment><label for=comment>Comentário</label> <textarea id=comment name=comment cols=45 rows=8 maxlength=65525 required=required></textarea></p><p class=comment-form-author><label for=author>Nome <span class=required>*</span></label> <input id=author name=author type=text value="" size=30 maxlength=245 required=required /></p>
+<p class=comment-form-email><label for=email>E-mail <span class=required>*</span></label> <input id=email name=email type=text value="" size=30 maxlength=100 aria-describedby=email-notes required=required /></p>
+<p class=comment-form-url><label for=url>Site</label> <input id=url name=url type=text value="" size=30 maxlength=200 /></p>
+<p class=form-submit><input name=submit type=submit id=submit class=submit value="Publicar comentário"/> <input type=hidden name=comment_post_ID value=12124 id=comment_post_ID />
+<input type=hidden name=comment_parent id=comment_parent value=0 />
+</p><p style="display: none;"><input type=hidden id=akismet_comment_nonce name=akismet_comment_nonce value=3e913c0cdb /></p><div class=inv-recaptcha-holder></div><p style="display: none;"><input type=hidden id=ak_js name=ak_js value=60 /></p>			</form>
+			</div><!-- #respond -->
+	</div><!-- #comments -->              <div class=fb-comments data-href="https://www.blogvidadecasada.com/decoracao-de-moranguinho/" data-width="100%" data-numposts=5></div>
+    			          <!-- next / last post -->
+          <div class="row last-back-next text-center">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                  <a href="https://www.blogvidadecasada.com/cha-de-revelacao-ideias-e-decoracao/" title="Chá de Revelação – Ideias e Decoração!">&laquo; Anterior<br><span>Chá de Revelação – Ideias e Decoração!</span></a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                              <a href="https://www.blogvidadecasada.com/" title="Ir para a p&aacute;gina inicial">P&aacute;gina Inicial</a>
+                </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                  <a href="https://www.blogvidadecasada.com/espaco-leitora-lanche-de-boas-vindas-da-fernanda/" title="Espaço Leitora: Lanche de Boas Vindas da Fernanda">Pr&oacute;ximo &raquo;<br><span>Espaço Leitora: Lanche de Boas Vindas da Fernanda</span></a>
+                </div>
+                      </div>
+          <!-- end next / last product -->
+        </div><!--/.site-content -->
+        <div class=row>
+          <div class=col-xs-12>
+            <br><br>
+            <!-- Anuncios do Content -->
+            <ins class=adsbygoogle style=display:block data-ad-client=ca-pub-9124784949952703 data-ad-slot=1626729472 data-ad-format=auto></ins>
+            <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+          </div>
+        </div><!--/ads google -->
+    </div><!--/.col-sm-8 -->
+    <div class=col-sm-4>
+      <br class=visible-xs>
+      <br class=visible-xs>
+      <div id=search-2 class="widget widget_search"><div class=widget-title>
+	<form action="https://www.blogvidadecasada.com/" method=get accept-charset=utf-8 id=searchform role=search>
+		<div class="widget-icon pull-left icon-fa-search"><a href="#" onclick="document.getElementById('searchform').submit()" data-toggle=tooltip data-original-title="Buscar no site" title="Buscar no site"><i class=icon-search></i></a></div>
+		<label for=s class=sr-only>Buscar por:</label>
+		<input name=s id=s type=text class=searchfield placeholder="Pesquisar no Blog" title="Pesquisar no Blog">
+		<input type=submit class=hidden value=Buscar>
+	</form>
+</div></div><div id=custom_html-5 class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="row sidebar-social-media text-center">
+<div class=col-xs-3>
+	<a href="https://www.youtube.com/user/vidadecasada" data-toggle=tooltip target=_blank title="Vida de Casada no Youtube">
+		<i class=icon-youtube></i>
+	</a>
+</div>
+<div class=col-xs-3>
+<a href="https://br.pinterest.com/vidadecasada" data-toggle=tooltip target=_blank title="Vida de Casada no Pinterest">
+<i class=icon-pinterest></i>
+</a>
+</div>
+<div class=col-xs-3>
+<a href="https://www.facebook.com/blogvidadecasada" data-toggle=tooltip target=_blank title="Vida de Casada no Facebook">
+<i class=icon-facebook></i>
+</a>
+</div>
+<div class=col-xs-3>
+<a href="https://instagram.com/vidadecasada" data-toggle=tooltip target=_blank title="Vida de Casada no Instagram">
+<i class=icon-instagram></i>
+</a>
+</div>
+</div></div></div><div id=widget_text_icon-2 class="widget widget_widget_text_icon"><div class=title-icon-text><a href="https://receberemcasa.klickpages.com.br/inscrevanews" title="Assine Nossa Newsletter"><div class=widget-title><div class="widget-icon pull-left icon-fa-mail-alt"><i class=icon-mail-alt></i></div>Assine Nossa Newsletter</div></a></div></div><div id=custom_html-4 class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://www.blogvidadecasada.com/sobre-juliana-santiago/" title="Sobre Juliana Santiago"><img class="img-responsive center-block " src="https://www.blogvidadecasada.com/wp-content/themes/vidadecasada/images/juliana-santiago.jpg" alt="Juliana Santiago" pagespeed_url_hash=2832446479 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+<div class="caption sr-only">por Juliana Santiago</div></a></div></div><div id=custom_html-2 class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><!-- Anuncios do Sidebar 1 -->
+<ins class=adsbygoogle style=display:block data-ad-client=ca-pub-9124784949952703 data-ad-slot=6102458279 data-ad-format=auto></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div><div id=widget_text_icon-6 class="widget widget_widget_text_icon"><div class=title-icon-text><div class=widget-title><div class="widget-icon pull-left icon-fa-plus"><i class=icon-plus></i></div>Posts Populares</div>      <div class=textwidget><div class=popular-posts>
+<ul class=wpp-list><li><a href="https://www.blogvidadecasada.com/ideias-para-comemorar-as-bodas-mensais-de-casamento/" title="Ideias para comemorar as bodas mensais de casamento" class=wpp-post-title target=_self>Ideias para comemorar as bodas mensais de casamento</a></li><li><a href="https://www.blogvidadecasada.com/saiba-como-tirar-o-mal-cheiro-nas-roupas/" title="Saiba como tirar e evitar o mau cheiro das roupas" class=wpp-post-title target=_self>Saiba como tirar e evitar o mau cheiro das roupas</a></li><li><a href="https://www.blogvidadecasada.com/top-5-dicas-de-presente-inovadores-para-o-marido/" title="TOP 5 – Dicas de presente inovadores para o Marido" class=wpp-post-title target=_self>TOP 5 – Dicas de presente inovadores para o Marido</a></li><li><a href="https://www.blogvidadecasada.com/organizar-a-comida-da-semana/" title="Como organizar a comida da semana?" class=wpp-post-title target=_self>Como organizar a comida da semana?</a></li><li><a href="https://www.blogvidadecasada.com/3-anos-de-casados-bodas-trigo-couro/" title="Comemoração 3 anos de Casados – Bodas de Trigo ou Couro" class=wpp-post-title target=_self>Comemoração 3 anos de Casados – Bodas de Trigo ou Couro</a></li></ul></div></div>
+    </div></div><div id=recent-comments-2 class="widget widget_recent_comments"><div class=widget-title>Comentários Recentes</div><ul id=recentcomments><li class=recentcomments><span class=comment-author-link>sandra</span> em <a href="https://www.blogvidadecasada.com/4-anos-de-casados-bodas-flores-frutas/#comment-16327">Comemoração de 4 anos de Casados &#8211; Bodas de Flores e Frutas</a></li><li class=recentcomments><span class=comment-author-link>Luceli Souza Bastos</span> em <a href="https://www.blogvidadecasada.com/arranjos-florais-desconstruidos/#comment-16325">Arranjos Florais Desconstruídos &#8211; A Nova Tendência</a></li><li class=recentcomments><span class=comment-author-link>Juliana Santiago</span> em <a href="https://www.blogvidadecasada.com/noite-de-caldos-decoracao-e-receita/#comment-16324">Noite de Caldos</a></li><li class=recentcomments><span class=comment-author-link><a href='https://www.magodasferramentas.com.br' rel='external nofollow' class=url>Eliana Siqueira</a></span> em <a href="https://www.blogvidadecasada.com/decoracao-como-reformar-moveis-com-tecidos/#comment-16323">Decoração: Como reformar móveis com tecidos</a></li><li class=recentcomments><span class=comment-author-link><a href='https://www.magodecasa.com.br' rel='external nofollow' class=url>Maria Becker</a></span> em <a href="https://www.blogvidadecasada.com/arranjos-florais-desconstruidos/#comment-16322">Arranjos Florais Desconstruídos &#8211; A Nova Tendência</a></li></ul></div><div id=widget_text_icon-4 class="widget widget_widget_text_icon"><div class=title-icon-text><div class=widget-title><div class="widget-icon pull-left icon-fa-facebook"><i class=icon-facebook></i></div>Curta o Blog</div>      <div class=textwidget><div class=calc-container><div class=fb-page data-href="https://www.facebook.com/blogvidadecasada" data-small-header=false data-adapt-container-width=true data-hide-cover=false data-show-facepile=true data-show-posts=false><div class=fb-xfbml-parse-ignore><blockquote cite="https://www.facebook.com/blogvidadecasada"><a href="https://www.facebook.com/blogvidadecasada">Vida de Casada</a></blockquote></div></div></div></div>
+    </div></div><div id=widget_text_icon-3 class="widget widget_widget_text_icon"><div class=title-icon-text><a href="htttp://www.blogvidadecasada.com/publicidade" title="Anuncie no blog"><div class=widget-title><div class="widget-icon pull-left icon-fa-star-empty"><i class=icon-star-empty></i></div>Anuncie no blog</div></a></div></div><div id=adrotate_widgets-2 class="widget adrotate_widgets"><div class="g g-2"><div class="g-col b-2 a-30"><a href="https://receberemcasa.klickpages.com.br/"><img src="https://www.blogvidadecasada.com/wp-content/uploads/2017/03/Gif-Ebook-Gratuito-1.gif" pagespeed_url_hash=2270809765 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/></a></div></div></div><div id=custom_html-3 class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><!-- Anúncio - Barra lateral -336x280 -->
+<ins class=adsbygoogle style="display:inline-block;width:336px;height:280px" data-ad-client=ca-pub-9124784949952703 data-ad-slot=3507124969></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>		<div id=recent-posts-2 class="widget widget_recent_entries">		<div class=widget-title>Últimos Posts</div>		<ul>
+											<li>
+					<a href="https://www.blogvidadecasada.com/o-que-fazer-em-belo-horizonte/">O que fazer em Belo Horizonte</a>
+											<span class=post-date>06/11/19</span>
+									</li>
+											<li>
+					<a href="https://www.blogvidadecasada.com/como-garantir-uma-viagem-de-carro-segura/">Como Garantir Uma Viagem De Carro Segura</a>
+											<span class=post-date>29/10/19</span>
+									</li>
+											<li>
+					<a href="https://www.blogvidadecasada.com/presentes-criativos-para-irmao/">11 Presentes Criativos Para Seu Irmão</a>
+											<span class=post-date>24/10/19</span>
+									</li>
+											<li>
+					<a href="https://www.blogvidadecasada.com/toalhas-de-mesa-para-receber-em-casa/">Toalhas De Mesa Para Receber Em Casa</a>
+											<span class=post-date>21/10/19</span>
+									</li>
+											<li>
+					<a href="https://www.blogvidadecasada.com/receita-bolo-de-leite-simples/">Receita: Bolo De Leite Simples</a>
+											<span class=post-date>18/10/19</span>
+									</li>
+					</ul>
+		</div><div id=custom_html-6 class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Anúncio Vertical - Barra Lateral -->
+<ins class=adsbygoogle style=display:block data-ad-client=ca-pub-9124784949952703 data-ad-slot=7095398020 data-ad-format=auto data-full-width-responsive=true></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>    </div><!--/.col-sm-4 -->
+  </div><!-- /.row -->
+  </div><!-- /.main.container -->
+</main>
+
+<footer>
+  <div class=footer-videos>
+    <a href="https://www.youtube.com/user/vidadecasada" target=_blank title="Canal Vida de Casada no Youtube"><div class=youtube-icon><i class=icon-youtube></i></div></a>
+    <div class=container>
+      <div class=row>
+        <div class=col-md-12>
+          <img src="https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/vidadecasada_youtube.svg" alt="Vida de Casada no Youtube" style="width:489px;margin-top:20px;margin-bottom:10px" class="img-responsive center-block" pagespeed_url_hash=2006769341 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        </div>
+        <div class=col-sm-4>
+          <a href="#" class="youtube-video video-1">
+            <img src="" class="img-responsive center-block" alt="" pagespeed_url_hash=2408546897 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+          </a>
+          <br>
+        </div>
+        <div class=col-sm-4>
+          <a href="#" class="youtube-video video-2">
+            <img src="" class="img-responsive center-block" alt="" pagespeed_url_hash=2408546897 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+          </a>
+          <br>
+        </div>
+        <div class=col-sm-4>
+          <a href="#" class="youtube-video video-3">
+            <img src="" class="img-responsive center-block" alt="" pagespeed_url_hash=2408546897 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+          </a>
+          <br>
+        </div>
+        <div class=col-md-12>
+          <div class=row>
+            <div class="col-md-7 col-sm-6">
+              <img src="https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/clique_assine.svg" alt="Clique aqui e assine nosso canal" style="width: 541px" class="img-responsive center-block hidden-xs" pagespeed_url_hash=2568074462 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+            </div>
+            <div class="col-md-5 col-sm-6">
+              <div class=youtube-subscribe-widget>
+                <iframe src="https://www.youtube.com/subscribe_widget?p=vidadecasada"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=footer-site>
+    <div class=container>
+      <div class=row>
+        <div class="col-md-1 col-sm-12 text-center">
+          <a href="https://www.blogvidadecasada.com/" data-toggle=tooltip title="Vida de Casada">
+                          <img src="https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/simbolo-vida-de-casada.svg" onerror="this.src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/images/images/simbolo-vida-de-casada.png'" alt="Vida de Casada" width=26 height=26 pagespeed_url_hash=2293665773 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                      </a>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <div class=menu-footer-container><ul class=footer-nav><li id=menu-item-7863 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7863"><a href="https://www.blogvidadecasada.com/sobre-juliana-santiago/">Sobre Juliana Santiago</a></li>
+<li id=menu-item-7861 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7861"><a href="https://www.blogvidadecasada.com/contato/">Contato</a></li>
+<li id=menu-item-7862 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7862"><a href="https://www.blogvidadecasada.com/publicidade/">Publicidade</a></li>
+<li id=menu-item-7860 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7860"><a href="https://www.blogvidadecasada.com/politica-do-blog/">Política do Blog</a></li>
+<li id=menu-item-7859 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7859"><a href="https://www.blogvidadecasada.com/curso-vida-de-casada/">Curso Receber em Casa</a></li>
+</ul></div>          <p>
+            &copy; 2019 &middot; Vida de Casada &middot; Todos os direitos reservados.
+          </p>
+        </div>
+        <div class="col-md-2 col-sm-12 text-center">
+            <ul class=footer-social-media>
+                <li>
+                  <a href="https://www.youtube.com/user/vidadecasada" data-toggle=tooltip target=_blank title="Vida de Casada no Youtube">
+                    <i class=icon-youtube></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.snapchat.com/add/vidadecasada" data-toggle=tooltip target=_blank title="Vida de Casada no Snapchat">
+                    <i class=icon-snapchat></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/blogvidadecasada" data-toggle=tooltip target=_blank title="Vida de Casada no Facebook">
+                    <i class=icon-facebook></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://instagram.com/vidadecasada" data-toggle=tooltip target=_blank title="Vida de Casada no Instagram">
+                    <i class=icon-instagram></i>
+                  </a>
+                </li>
+            </ul>
+            <p><a href="http://sitedacasa.com" target=_blank title="Design por Casa2">Design por Casa2</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<div id=fb-modal class="modal fade">
+    <div class=modal-dialog>
+        <div class=modal-content>
+            <div class=modal-header>
+                <button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button>
+                <h4 class=modal-title>Curta a p&aacute;gina do Blog Vida de Casada no Facebook</h4>
+            </div>
+            <div class=modal-body>
+              <div class=fb-like data-href="https://www.facebook.com/blogvidadecasada" data-layout=standard data-action=like data-show-faces=true data-share=true></div>
+            </div>
+            <div class=modal-footer>
+                <button type=button class="btn btn-default" data-dismiss=modal>Voltar para o site</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type='text/javascript'>//<![CDATA[
+var click_object={"ajax_url":"https:\/\/www.blogvidadecasada.com\/wp-admin\/admin-ajax.php"};
+//]]></script>
+<script type='text/javascript' src='https://www.blogvidadecasada.com/wp-content/plugins/adrotate/library/jquery.adrotate.clicktracker.js'></script>
+<script type='text/javascript'>//<![CDATA[
+var wpcf7={"apiSettings":{"root":"https:\/\/www.blogvidadecasada.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Verifique se voc\u00ea n\u00e3o \u00e9 um rob\u00f4."}}};
+//]]></script>
+<script type='text/javascript' src='https://www.blogvidadecasada.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.0.2'></script>
+<script type='text/javascript'>var renderInvisibleReCaptcha=function(){for(var i=0;i<document.forms.length;++i){var form=document.forms[i];var holder=form.querySelector('.inv-recaptcha-holder');if(null===holder)continue;holder.innerHTML='';(function(frm){var cf7SubmitElm=frm.querySelector('.wpcf7-submit');var holderId=grecaptcha.render(holder,{'sitekey':'6Lfj5iAUAAAAAD3dMPNhd7l6YqturHHNwieYku-K','size':'invisible','badge':'bottomright','callback':function(recaptchaToken){if((null!==cf7SubmitElm)&&(typeof jQuery!='undefined')){jQuery(frm).submit();grecaptcha.reset(holderId);return;}
+HTMLFormElement.prototype.submit.call(frm);},'expired-callback':function(){grecaptcha.reset(holderId);}});if(null!==cf7SubmitElm&&(typeof jQuery!='undefined')){jQuery(cf7SubmitElm).off('click').on('click',function(clickEvt){clickEvt.preventDefault();grecaptcha.execute(holderId);});}
+else
+{frm.onsubmit=function(evt){evt.preventDefault();grecaptcha.execute(holderId);};}})(form);}};</script>
+<script type='text/javascript' async defer src='https://www.google.com/recaptcha/api.js?onload=renderInvisibleReCaptcha&#038;render=explicit&#038;hl=pt-BR'></script>
+<script type='text/javascript' src='https://www.blogvidadecasada.com/wp-content/themes/vidadecasada2015/js/theme.min.js?ver=1.1.0'></script>
+<script type='text/javascript' src='https://www.blogvidadecasada.com/wp-includes/js/wp-embed.min.js?ver=4.9.12'></script>
+<script async=async type='text/javascript' src='https://www.blogvidadecasada.com/wp-content/plugins/akismet/_inc/form.js?ver=4.0.7'></script>
+<!-- Google Fonts -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>WebFont.load({google:{families:['Open+Sans:400,400italic,700,700italic','Droid+Serif','Bitter:400,700']}});</script>
+<!-- Facebook -->
+<div id=fb-root></div>
+<script>(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.12&appId=907389352687487";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));</script>
+<!-- Google AdSense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-9124784949952703",enable_page_level_ads:true});</script>
+</body>
+</html>

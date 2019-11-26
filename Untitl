@@ -1,0 +1,33 @@
+            db.ref('/alunosifrs').on('child_added', function(item) {
+                data.push(item.val().pontos)
+                function sortfunction(a, b){
+                return (a - b) //faz com que o array seja ordenado numericamente e de ordem crescente.
+                }
+                data.sort(sortfunction);
+                console.log(data);
+            });
+            db.ref('/alunosifrs').on('child_added', function(item) {
+                    
+                if(data[za] == item.val().pontos){
+                    
+                    var th = document.createElement('th');
+                    th.setAttribute("scope", "row");
+                    th.textContent = '#';
+                    var td = document.createElement('td');
+                    td.textContent = item.val().nome;
+                    var td2 = document.createElement('td');
+                    td2.textContent = item.val().idade;
+                    var td3 = document.createElement('td');
+                    td3.textContent = item.val().pontos;
+                    var tr = document.createElement('tr');
+                    tr.className = clas[j];
+                    tr.appendChild(th);
+                    tr.appendChild(td);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tbody1.appendChild(tr);
+                    tbody1.setAttribute("style", "overflow-y:scroll");
+                    j++
+                }
+                za++;
+            });
